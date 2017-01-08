@@ -26,6 +26,8 @@ define(['enums', 'font'], function (Enums, Font) {
                 if (args !== undefined) {
                     var comando = args[0].toUpperCase();
                     args.shift();
+
+
                     switch (comando) {
                         case "/ONLINE":
                             this.game.client.sendOnline();
@@ -373,6 +375,100 @@ define(['enums', 'font'], function (Enums, Font) {
                             this.game.client.sendHome();
                             break;
 
+                        case "/GMSG":
+                           if (args.length) {
+                                this.game.client.sendGMMessage(args.join(" "));
+                            } else {
+                                this.game.escribirMsgConsola("Faltan parámetros. Utilice /gmsg mensaje.");
+                            }
+                            break;
+
+                        case "/SHOWNAME":
+                            this.game.client.sendShowName();
+                            break;
+
+                        case "/ONLINEREAL":
+                            this.game.client.sendOnlineRoyalArmy();
+                            break;
+
+                        case "/ONLINECAOS":
+                            this.game.client.sendOnlineChaosLegion();
+                            break;
+
+                        case "/IRCERCA":
+                            if (args.length) {
+                                this.game.client.sendGoNearby(args.join(" "));
+                            } else {
+                                this.game.escribirMsgConsola("Faltan parámetros. Utilice /ircerca NICKNAME.");
+                            }
+                            break;
+
+                        case "/REM":
+                            if (args.length) {
+                                this.game.client.sendComment(args.join(" "));
+                            } else {
+                                this.game.escribirMsgConsola("Escriba un comentario.");
+                            }
+                            break;
+
+                        case "/HORA":
+                            this.game.client.sendServerTime();
+                            break;
+                        
+                        case "/DONDE":
+                            if (args.length) {
+                                this.game.client.sendWhere(args.join(" "));
+                            } else {
+                                this.game.escribirMsgConsola("Faltan parámetros. Utilice /donde NICKNAME.");
+                            }
+                            break;
+
+                        case "/NENE":
+                            if(args.length){
+                                if (Number.isInteger(Number(args))){
+                                    this.game.client.sendCreaturesInMap(args.join(" "));
+                                } else {
+                                    this.game.escribirMsgConsola("Mapa incorrecto. Utilice /nene MAPA.");
+                                }
+                            }else{
+                                this.game.client.sendCreaturesInMap(this.game.map.numero); //verificar si existe
+                            }
+                            break;
+
+                        case "/INVISIBLE":
+                            this.game.client.sendInvisible();
+                            break;
+                        
+                        case "/TELEP":
+                            if(args.length >= 4){
+                               if(Number.isInteger(Number(args[1])) && Number.isInteger(Number(args[2])) && Number.isInteger(Number(args[3]))){
+                                    this.game.client.sendWarpChar(args[0], args[1], args[2], args[3]);
+                               }else{
+                                    //No es numerico
+                                    this.game.escribirMsgConsola("Valor incorrecto. Utilice /telep NICKNAME MAPA X Y.");
+                               }
+                            }else if (args.length == 3){
+                                if(Number.isInteger(Number(args[0])) && Number.isInteger(Number(args[1])) && Number.isInteger(Number(args[2]))){
+                                    this.game.client.sendWarpChar('YO', args[0], args[1], args[2]);
+                               }else{
+                                    //No es numerico
+                                    this.game.escribirMsgConsola("Valor incorrecto. Utilice /telep NICKNAME MAPA X Y.");
+                               }
+                            } else if (args.length == 2){
+                                if(Number.isInteger(Number(args[0])) && Number.isInteger(Number(args[1]))){
+                                    this.game.client.sendWarpChar('YO', this.game.map.numero, args[0], args[1]);
+                               }else{
+                                    //No es numerico
+                                    this.game.escribirMsgConsola("Valor incorrecto. Utilice /telep NICKNAME MAPA X Y.");
+                               }
+                            }else{
+                                    // Faltan el parametro
+                                    this.game.escribirMsgConsola("Faltan parámetros. Utilice /telep NICKNAME MAPA X Y.");
+                            }
+
+                            break;
+
+
                         default:
                             valido = false;
                             break;
@@ -407,62 +503,6 @@ define(['enums', 'font'], function (Enums, Font) {
  this.game.client.sendGuildFundation(eClanType.ct_GM);
  break;
 
- Case "/GMSG"
- If notNullArguments Then
- Call WriteGMMessage(ArgumentosRaw)
- Else
- 'Avisar que falta el parametro
- Call ShowConsoleMsg("Escriba un mensaje.")
- End If
-
- Case "/SHOWNAME"
- Call WriteShowName
-
- Case "/ONLINEREAL"
- Call WriteOnlineRoyalArmy
-
- Case "/ONLINECAOS"
- Call WriteOnlineChaosLegion
-
- Case "/IRCERCA"
- If notNullArguments Then
- Call WriteGoNearby(ArgumentosRaw)
- Else
- 'Avisar que falta el parametro
- Call ShowConsoleMsg("Faltan parámetros. Utilice /ircerca NICKNAME.")
- End If
-
- Case "/REM"
- If notNullArguments Then
- Call WriteComment(ArgumentosRaw)
- Else
- 'Avisar que falta el parametro
- Call ShowConsoleMsg("Escriba un comentario.")
- End If
-
- Case "/HORA"
- Call Protocol.WriteServerTime
-
- Case "/DONDE"
- If notNullArguments Then
- Call WriteWhere(ArgumentosRaw)
- Else
- 'Avisar que falta el parametro
- Call ShowConsoleMsg("Faltan parámetros. Utilice /donde NICKNAME.")
- End If
-
- Case "/NENE"
- If notNullArguments Then
- If ValidNumber(ArgumentosRaw, eNumber_Types.ent_Integer) Then
- Call WriteCreaturesInMap(ArgumentosRaw)
- Else
- 'No es numerico
- Call ShowConsoleMsg("Mapa incorrecto. Utilice /nene MAPA.")
- End If
- Else
- 'Por default, toma el mapa en el que esta
- Call WriteCreaturesInMap(UserMap)
- End If
 
  Case "/TELEPLOC"
  Call WriteWarpMeToTarget

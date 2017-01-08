@@ -30,7 +30,8 @@ define(["utils/charcodemap"], function (CharCodeMap) {
             robar: getKeyNumber("R"),
             macroHechizos: getKeyNumber("F7"),
             macroTrabajo: getKeyNumber("F8"),
-            mostrarMenu: getKeyNumber("ESCAPE")
+            mostrarMenu: getKeyNumber("ESCAPE"),
+            shift: getKeyNumber("SHIFT")
         },
         audio: {
             soundMuted: false,

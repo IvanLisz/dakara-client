@@ -9,6 +9,7 @@ define(['enums', 'utils/charcodemap'], function (Enums, CharcodeMap) {
             this.acciones = acciones;
             this.game = game;
             this.keys = null;
+            this.warpChar = false;
         }
 
         setKeys(keys) {
@@ -27,7 +28,11 @@ define(['enums', 'utils/charcodemap'], function (Enums, CharcodeMap) {
             if ((!this.game.started) || (this.game.isPaused)) {
                 return;
             }
-            this.acciones.click();
+            if (!this.warpChar){
+                this.acciones.click();
+            }else{
+                this.acciones.teleport();
+            }
         }
 
         doubleClick() {
@@ -59,6 +64,9 @@ define(['enums', 'utils/charcodemap'], function (Enums, CharcodeMap) {
                 case keys.caminarSur:
                     acciones.terminarDeCaminar(Enums.Heading.sur);
                     break;
+                case keys.shift: //mejor forma de hacer esto?
+                        this.warpChar = false; 
+                        break;
                 default:
                     break;
 
@@ -127,6 +135,9 @@ define(['enums', 'utils/charcodemap'], function (Enums, CharcodeMap) {
                 case keys.mostrarMenu:
                     acciones.mostrarMenu();
                     continuar = true;
+                    break;
+                case keys.shift:
+                    this.warpChar = true;
                     break;
                 default:
                     continuar = true;

@@ -62,7 +62,6 @@ define(['enums', 'lib/pixi', 'view/camera', 'view/consola', 'view/containerorden
                 this.gameStage.addChild(this.layer3);
                 this.gameStage.addChild(this.layer4);
                 this.gameStage.addChild(this.gameChat);
-
                 this.entityRenderer = new EntityRenderer(this.escala, this.layer3, this.gameNames, this.gameChat, this.camera, this.assetManager, this.gameStage);
                 this.climaRenderer = new ClimaRenderer(this.escala, this.climaContainer, this.assetManager, this.pixiRenderer);
                 this.mapaRenderer = new MapaRenderer(this.camera, this.assetManager, this.layer1, this.layer2, this.layer3, this.layer4);
@@ -180,7 +179,12 @@ define(['enums', 'lib/pixi', 'view/camera', 'view/consola', 'view/containerorden
             }
 
             setBajoTecho(bajoT) {
-                this.layer4.visible = !bajoT;
+                //this.layer4.visible = !bajoT;
+                if(bajoT){
+                    this.layer4.alpha=0.25;
+                }else{
+                    this.layer4.alpha=0.85;
+                }
             }
 
             updateBeforeMovementBegins(dir,entities) {
@@ -228,6 +232,7 @@ define(['enums', 'lib/pixi', 'view/camera', 'view/consola', 'view/containerorden
 
             renderFrame() {
                 this.pixiRenderer.render(this.stage);
+
                 /*
                  let testPosEnteras = (c) => {
                  if ( (Math.round(c.x) !== c.x) || (Math.round(c.y) !== c.y) ){

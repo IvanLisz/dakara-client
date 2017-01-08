@@ -4,7 +4,8 @@
 
 define(["utils/palette"], function (Palette) {
 
-    var FONT_FAMILY = 'Myriad Pro, Arial';
+    var FONT_FAMILY = 'Tahoma, Arial';
+    //var FONT_FAMILY = 'Myriad Pro, Arial';
 
     return {
         NickColorIndex: {
@@ -43,37 +44,41 @@ define(["utils/palette"], function (Palette) {
 
         CONSOLA_BASE_FONT: {
             fontFamily: FONT_FAMILY,
-            fontSize: '12',
+            fontSize: '8',
             stroke: "black",
-            strokeThickness: 2,
+            strokeThickness: 1,
         },
 
         NOMBRE_BASE_FONT: {
             fontFamily: FONT_FAMILY,
             fontWeight: 'bold',
-            fontSize: '12',
+            fontSize: '8',
             stroke: "black",
             strokeThickness: 0.2,
             align: 'center',
             dropShadow: true,
-            dropShadowDistance: 0,
-            dropShadowBlur: 3
+            dropShadowDistance: 1,
+            dropShadowBlur: 1
         },
 
         TALK_BASE_FONT: {
             fontFamily: FONT_FAMILY,
+            fontWeight: 'bold',
             /*fontWeight: 'bold',*/
-            fontSize: '12',
+            fontSize: '8',
             stroke: "black",
-            strokeThickness: 2,
+            strokeThickness: 1,
             align: 'center',
-            fill: Palette.get('white')
+            dropShadow: true,
+            dropShadowDistance: 1,
+            dropShadowBlur: 1
+            //fill: Palette.get('white')
         },
 
         HOVERING_BASE_FONT: {
             fontFamily: FONT_FAMILY,
             fontWeight: '900',
-            fontSize: '14',
+            fontSize: '10',
             stroke: "black",
             strokeThickness: 1,
         },

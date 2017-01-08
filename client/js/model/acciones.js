@@ -121,6 +121,11 @@ define(['enums', 'font', 'model/macros'], function (Enums, Font, Macros) {
             }
         }
 
+        teleport() {
+            var gridPos = this.game.getMouseGridPosition();
+            this.game.client.sendWarpChar('YO', this.game.map.numero, gridPos.x, gridPos.y);
+        }
+
         doubleClick() {
             var gridPos = this.game.getMouseGridPosition();
             if (this.game.logeado) {

@@ -2696,7 +2696,7 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: "Myriad Pro", arial, serif;
+  font-family: "Tahoma", arial, serif;
   font-size: 14px;
   line-height: 1.42857;
   color: #978577;
@@ -6814,7 +6814,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Myriad Pro", arial, serif;
+  font-family: "Tahoma", arial, serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6920,7 +6920,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Myriad Pro", arial, serif;
+  font-family: "Tahoma", arial, serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -8546,7 +8546,7 @@ footer a {
   height: 100%;
   background-size: 100% 100%;
   color: white;
-  font-size: 2vh;
+  font-size: 1.8vh;
   text-align: left;
   vertical-align: text-top;
   margin: 0;
